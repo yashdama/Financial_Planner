@@ -74,7 +74,7 @@ def test_calculate_net_income_with_hourly_rate_without_hours_worked():
 def test_calculate_net_income_zero_hours_worked():
     with pytest.raises(
             ValueError,
-            match='Deductions cannot be greater than gross income',
+            match='Provide total hours worked in a month if using hourly rate',
         ):
             calculate_net_income(hourly_rate=50, monthly_salary=None, total_hours_worked=0, deductions=[1000])
 

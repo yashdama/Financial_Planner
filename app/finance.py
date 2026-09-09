@@ -19,7 +19,7 @@ def calculate_net_income(hourly_rate: int | float | None,
     if use_hourly_rate == use_monthly_salary:
         raise ValueError('Please provide either hourly rate or monthly salary not both')
 
-    if use_hourly_rate and total_hours_worked is None:
+    if use_hourly_rate and (total_hours_worked is None or total_hours_worked <= 0):
         raise ValueError('Provide total hours worked in a month if using hourly rate')
     
     for deduction in deductions:
@@ -62,7 +62,7 @@ def calculate_savings_plan(current_savings: float, goal_amount: float, target_mo
         raise ValueError('Goal Amount must be greater than zero')
 
     if current_savings < 0:
-        raise ValueError('Current saving cannot be negative, if no savings zero is accepted')
+        raise ValueError('Current savings cannot be negative, if no savings zero is accepted')
 
     if target_months <= 0:
         raise ValueError('Target months must be greater than zero')
