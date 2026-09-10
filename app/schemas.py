@@ -7,17 +7,17 @@ class NetIncomeRequest(BaseModel):
     deductions: list[float] = Field(default_factory=list, description='Total Tax deductions')
 
 class MonthlySurplusRequest(BaseModel):
-    net_income: float | None = None
+    net_income: float
     recurring_expenses: list[float] = Field(default_factory=list, 
                                             description='Recurring expenses such as Rent, EMI')
     variable_expenses: list[float] = Field(default_factory=list, 
                                            description='Variable expenses such as groceries, gas')
 
 class SavingsPlanRequest(BaseModel):
-    current_savings: float | None = None
-    goal_amount: float | None = None
-    target_months: int | None = None
-    monthly_surplus: float | None = None
+    current_savings: float
+    goal_amount: float 
+    target_months: int
+    monthly_surplus: float
 
 class NetIncomeResponse(BaseModel):
     net_income: float = Field(..., description='Net Income after deductions')
