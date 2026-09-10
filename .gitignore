@@ -1,0 +1,12 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+# virtual environment directory
+venv/
+venv/
+
+# pycache files
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# local database
+fiancial_planner.db
