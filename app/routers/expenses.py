@@ -16,7 +16,8 @@ from app.schemas import (
     ExpenseRequest, 
     ExpenseResponse, 
     ExpenseUpdate, 
-    MonthlyExpenseResponse)
+    MonthlyExpenseResponse, 
+)
 from app.models.expense import Expense
 from app.database import get_db
 

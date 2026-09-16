@@ -44,6 +44,20 @@ class SavingsPlanRequest(BaseModel):
     target_months: int
     monthly_surplus: float
 
+class MonthlySummaryRequest(BaseModel):
+    year: int = Field(ge=1, le=9998)
+    month: int = Field(ge=1, le=12)
+    net_income_cents: int = Field(ge=0)
+    recurring_expenses_cents: list[int] = Field(default_factory=list)
+
+    @model_validator(mode='after')
+    def validate_request(self) -> Self:
+        for expense in self.recurring_expenses_cents:
+            if expense < 0:
+                raise ValueError('Recurring expenses cannot be negative')
+
+        return self
+
 class ExpenseResponse(ExpenseRequest):
     id: int
     created_at: datetime
@@ -68,3 +82,12 @@ class MonthlyExpenseResponse(BaseModel):
     year: int
     month: int
     total_amount_cents: int = Field(..., description='Total expenses for the specified month in cents')
+
+class MonthlySummaryResponse(BaseModel):
+    year: int
+    month: int
+    net_income_cents: int
+    recurring_expenses_total_cents: int
+    variable_expenses_total_cents: int
+    monthly_surplus: int
+    has_deficit: bool
